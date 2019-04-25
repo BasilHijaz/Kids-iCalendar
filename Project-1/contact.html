@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kids iCalendar</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <header id="header">
+    <nav class="navbar navbar-default navbar-static-top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">
+            <a href="index.html"><h1 class="topleft" style = "font-size: 30px">Kids <span style="color:#FDDB00">i</span>Calendar</h1></a>
+          </div>
+        </div>
+        <div class="navbar-collapse collapse">
+          <div class="menu">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation"><a href="index.html">الرئيسية</a></li>
+              <li role="presentation"><a href="events.html">الأحداث</a></li>
+              <li role="presentation"><a href="see.html">شاهد</a></li>
+              <li role="presentation"><a href="contact.html" class="active">تواصل معنا</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--/.container-->
+    </nav>
+    <!--/nav-->
+  </header>
+  <!--/header-->
+
+  
+
+  <section class="contact-page">
+    <div class="container">
+      <div class="text-center">
+        <h2>اكتب رسالتك</h2>
+        
+      </div>
+      <div class="row contact-wrap">
+        <div class="col-md-6 col-md-offset-3">
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage"></div>
+          <form action="mailto:basilhijaz@yahoo.com" method="GET" role="form" class="contactForm">
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="اسمك" data-rule="minlen:4" data-msg="الرجاء إدخال اربع حروف على الأقل" style="text-align: right">
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="عنوان البريد الإلكتروني" data-rule="email" data-msg="يرجى إدخال البريد الإلكتروني الصحيح" style="text-align: right">
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="موضوع الرسالة" data-rule="minlen:4" data-msg="الرجاء إدخال ما لا يقل عن 8 حروف لموضوع الرسالة" style="text-align: right">
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="يجب عليك كتابة الرسالة هنا" placeholder="الرسالة" style="text-align: right"></textarea>
+              <div class="validation"></div>
+            </div><p id="pl"></p>
+            <div class="text-center"><button type="submit" value = "Send" name="submit" class="btn btn-primary btn-lg" required="required">إرسال
+</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="col-md-4 wow fadeInDown animated animated animated animated animated" data-wow-duration="1000ms"
+        data-wow-delay="300ms"
+        style="visibility: visible;-webkit-animation-duration: 1000ms; -moz-animation-duration: 1000ms; animation-duration: 1000ms;-webkit-animation-delay: 300ms; -moz-animation-delay: 300ms; animation-delay: 300ms;">
+        <h4>من نحن؟</h4>
+        <p>
+          <h4 style="color: #FFF"> نحن مجموعة من طلبة المدارس نهدف إلى إعطاء الطفل حقه في اللعب عن طريق جمع جميع
+            الفعاليات التي تحدث في كافة أنحاء فلسطين </h4>
+        </p>
+        <div class="contact-info">
+          <ul>
+            <li><i class="fa fa-envelope fa"></i> basilhijaz@yahoo.com</li>
+            <li><i class="fa fa-envelope fa"></i> Rouaadam10@gmail.com</li>
+            <li><i class="fa fa-phone fa"></i> +970597332877</li>
+            <li><i class="fa fa-phone fa"></i> +970597051445</li>
+          </ul>
+        </div>
+		<div class="footer-social-icons">
+          <ul class="social-icons">
+              <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+              <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+              <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+              <li><a href="" class="social-icon"> <i class="fa fa-instagram"></i></a></li>
+          </ul>
+      </div>
+      </div>
+
+     <div class="col-md-4 wow fadeInDown animated animated animated" data-wow-duration="1000ms" data-wow-delay="600ms"
+        style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-duration: 1000ms; -moz-animation-duration: 1000ms; animation-duration: 1000ms;-webkit-animation-delay: 600ms; -moz-animation-delay: 600ms; animation-delay: 600ms;">
+        <div class="text-center">
+          <h4>شركاؤنا</h4>
+          <ul class="sidebar-gallery">
+            <li><a href="index.html#"><img src="img/partner1.jpg" width="107 px" height="68 px" alt=""></a></li>
+            <li><a href="index.html#"><img src="img/partner2.png" width="107 px" height="68 px" alt=""></a></li>
+            <li><a href="index.html#"><img src="img/partner3.jpg" width="107 px" height="68 px" alt=""></a></li>
+            <li><a href="index.html#"><img src="img/partner4.jpg" width="107 px" height="68 px" alt=""></a></li>
+            <li><a href="index.html#"><img src="img/partner5.jpg" width="107 px" height="68 px" alt=""></a></li>
+            <li><a href="index.html#"><img src="img/partner6.jpg" width="107 px" height="68 px" alt=""></a></li>
+          </ul>
+        </div>
+      </div>
+	  
+      <div class="col-md-4 wow fadeInDown animated animated animated" data-wow-duration="1000ms" data-wow-delay="600ms"
+        style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-duration: 1000ms; -moz-animation-duration: 1000ms; animation-duration: 1000ms;-webkit-animation-delay: 600ms; -moz-animation-delay: 600ms; animation-delay: 600ms;">
+        <div class="text-center">
+          <h4>فعاليات ستحدث قريبا</h4>
+          <ul id="enElement" class="sidebar-gallery">
+          
+          </ul>
+          <form class="form-inline" action="events.html">
+            <div class="form-group">
+
+            </div>
+            <div class="form-group">
+
+              <button type="getnow" name="subscribe" class="btn btn-primary btn-lg" required="required">المزيد</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+	  <div class="col-md-4 wow fadeInDown animated animated animated" data-wow-duration="1000ms" data-wow-delay="600ms"
+      style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-duration: 1000ms; -moz-animation-duration: 1000ms; animation-duration: 1000ms;-webkit-animation-delay: 600ms; -moz-animation-delay: 600ms; animation-delay: 600ms;">
+      <div class="text-center">
+        <h4>فضلا وليس أمرا تعبئة الاستبيان الاتي للتحسين من الموقع</h4>
+		<form class = "form-inline" action = "https://docs.google.com/forms/d/e/1FAIpQLSfdqd2qGYeo_uQeesHFDWP0QgeI93FbSHeAEogk5GrLIrIXiw/viewform?usp=sf_link">
+		<div class = "form-group">
+		    <button type="getnow" name="subscribe" class="btn btn-primary btn-lg" required="required">استطلاع رأي</button>
+		</div>
+		
+    </div>
+  </footer>
+  <script src="./js/firebase.js"></script>
+  <script src="./js/jquery.js"></script>
+  <script>
+    window.onload = function (e) {
+      let config = {
+        apiKey: "AIzaSyBA-Ajzk-49K8Oqb-QdTBk24ssETV-0vbM",
+        authDomain: "kidsicalendar.firebaseapp.com",
+        databaseURL: "https://kidsicalendar.firebaseio.com",
+        projectId: "kidsicalendar",
+        storageBucket: "kidsicalendar.appspot.com",
+        messagingSenderId: "450786879839"
+      };
+      let project = firebase.initializeApp(config);
+      let DB = project.database();
+      let SF = firebase.storage();
+      let PostTEXT = ``;
+      let n = 0;
+
+      DB.ref(`posts`).on("value", r => {
+        let rr = r.val();
+        let rrKeys = Object.keys(rr);
+        for (let i = 0; i < rrKeys.length; i++) {
+          let post = rr[rrKeys[i]];
+          console.log(post);
+          SF.ref().child(post.imageToken).getDownloadURL().then(function (url) {
+            let xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function (event) {
+              let blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+            let today = new Date();
+            if (today.getFullYear() - parseInt(post.evDate.year) == 0 && today.getMonth() - parseInt(post.evDate.month) <= 1 && today.getDay() - parseInt(post.evDate.day) <= 6) {
+              PostTEXT += `<li><a href="${post.eventLink}"><img src="${url}" width="107 px" height="68 px" alt=""></a></li>`;
+              n++;
+            }
+          if (n < 6) document.getElementById("enElement").innerHTML = PostTEXT;
+
+          }).catch(console.log);
+
+        }
+
+      });
+
+    }
+
+  </script>
+ 
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script>
+    wow = new WOW({}).init();
+  </script>
+  <script src="contactform/contactform.js"></script>
+
+
+
+
+</body></html>
