@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<title> Landing page </title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"></script> 
+<style type="text/css">
+	body{
+		color: #fff;
+		background: #a3c2c2;
+		font-family: 'Roboto', sans-serif;
+	}
+    .form-control{
+		height: 40px;
+		box-shadow: none;
+		color: #969fa4;
+	}
+	.form-control:focus{
+		border-color: #5cb85c;
+	}
+    .form-control, .btn{        
+        border-radius: 3px;
+    }
+	.signup-form{
+		width: 400px;
+		margin: 0 auto;
+		padding: 30px 0;
+	}
+	.signup-form h2{
+		color: #636363;
+        margin: 0 0 15px;
+		position: relative;
+		text-align: center;
+    }
+	.signup-form h2:before, .signup-form h2:after{
+		content: "";
+		height: 2px;
+		width: 30%;
+		background: #d4d4d4;
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+	}	
+	.signup-form h2:before{
+		left: 0;
+	}
+	.signup-form h2:after{
+		right: 0;
+	}
+    .signup-form .hint-text{
+		color: #999;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+    .signup-form form{
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #f2f3f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+	.signup-form .form-group{
+		margin-bottom: 20px;
+	}
+	.signup-form input[type="checkbox"]{
+		margin-top: 3px;
+	}
+	.signup-form .btn{        
+        font-size: 16px;
+        font-weight: bold;		
+		min-width: 140px;
+        outline: none !important;
+    }
+	.signup-form .row div:first-child{
+		padding-right: 10px;
+	}
+	.signup-form .row div:last-child{
+		padding-left: 10px;
+	}    	
+    .signup-form a{
+		color: #fff;
+		text-decoration: underline;
+	}
+    .signup-form a:hover{
+		text-decoration: none;
+	}
+	.signup-form form a{
+		color: #5cb85c;
+		text-decoration: none;
+	}	
+	.signup-form form a:hover{
+		text-decoration: underline;
+	}  
+</style>
+<script src="./js/firebase.js"></script>
+<script src="./js/jquery.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBA-Ajzk-49K8Oqb-QdTBk24ssETV-0vbM",
+    authDomain: "kidsicalendar.firebaseapp.com",
+    databaseURL: "https://kidsicalendar.firebaseio.com",
+    projectId: "kidsicalendar",
+    storageBucket: "kidsicalendar.appspot.com",
+    messagingSenderId: "450786879839"
+  };
+  let project = firebase.initializeApp(config);
+  let DB = project.database();
+  let SF = firebase.storage();
+
+  function toDo() {
+    let file = $("#FILE").prop("files")[0];
+    let fipToken = `${Math.random().toString(36).substring(2)}_w_${file.name.replace(/[#]/g,'').replace(/[$]/g,'').replace(/[.]/g,'').replace(/[[]/g,'').replace(/[\]]/g,'')}`;
+		let entry__ = "";
+		if ($("#iFree").prop("checked")) {
+			entry__ = "Free";
+		} else {
+			entry__ = "Piad";
+		}
+    let PostObject = {
+      postID: fipToken,
+      eventName: $("#eventNAME").val(),
+      organization: $("#organizationNAME").val(),
+      email: $("#emailSTRING").val(),
+      place: $("#placeSTRING").val(),
+      evDate: {
+      day: $("#DAY").val(),
+      month: $("#MONTH").val(),
+      year: $("#YEAR").val()
+      },
+      eventLink: $("#eventLINK").val(),
+      imageToken: fipToken,
+      description: $("#DESCRIPTION").val(),
+			entry: entry__
+    }
+		console.log(PostObject);
+    DB.ref(`posts/${fipToken}`).set(PostObject).then((result) => {
+      SF.ref(fipToken).put(file).then((result) => {
+				window.location = `${window.location}`.replace("Landing-Page.html", "Posted.html");
+      }).catch(console.log);
+    }).catch(console.log);
+  }
+
+</script>
+</head>
+<body>
+<div id="CONN" class="signup-form">
+    <form action="javascript:toDo();">
+		<h2>Publish an Event</h2>
+		<p class="hint-text">Please fill all of the information percisely.</p>
+    Organization:
+    <div class="form-group">
+				<div class="col-xs-6"><input id="organizationNAME" type="text" class="form-control" name="organization" placeholder="Organization" required="required"></div>
+		</div>
+
+    Email:
+    <div class="form-group">
+        	<input id="emailSTRING" type="email" class="form-control" name="email" placeholder="Email" required="required"><br>
+    </div>
+    
+    Event name:
+    <div class="form-group">
+				<div class="col-xs-6"><input id="eventNAME" type="text" class="form-control" name="event name" placeholder="event name" required="required"></div>
+		</div>
+    
+		Place:
+		<div class="form-group">
+        	<input id="placeSTRING" type="text" class="form-control" name="place" placeholder="Place (including the city)" required="required"><br>
+    </div>
+		
+		Date:
+		<div class="form-group">
+      <input id="DAY" type="number" class="form-control" name="day" placeholder="Day" required="required"><br>
+			<input id="MONTH" type="number" class="form-control" name="month" placeholder="Month" required="required"><br>
+			<input id="YEAR" type="number" class="form-control" name="year" placeholder="Year" required="required"><br>
+    </div>
+
+		Event Link:  
+		<div class="form-group">
+        	<input id="eventLINK" type="text" class="form-control" name="event" placeholder="Link (URL)" required="required"><br>
+    </div>
+
+		Entry:
+			<div class="form-group">
+				<input type="radio" id="iFree" name="gender" value="free" checked> Free
+				<input type="radio" id="iPaid" name="gender" value="paid"> Paid
+			</div>
+
+		Upload your pic (as a file):  
+		<div class="form-group">
+        	<input id="FILE" type="file" class="form-control" name="photo" placeholder="picture" required="required"><br>
+    </div>
+
+		Description: 
+		<textarea id="DESCRIPTION" rows="4" name = "text" cols="30"></textarea>
+		<br>
+		<br>
+
+		<div class="form-group">
+      <button type="submit" id="postBtn"  class="btn btn-success btn-lg btn-block">Post!</button>
+    </div>
+    </form> <!-- form -->
+
+</body>
+</html>

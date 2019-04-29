@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<title> Edit Database </title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link href="css/animate.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"></script> 
+<style type="text/css">
+	body{
+		color: #fff;
+		background: #a3c2c2;
+		font-family: 'Roboto', sans-serif;
+	}
+    .form-control{
+		height: 40px;
+		box-shadow: none;
+		color: #969fa4;
+	}
+	.form-control:focus{
+		border-color: #5cb85c;
+	}
+    .form-control, .btn{        
+        border-radius: 3px;
+    }
+	.signup-form{
+		width: 400px;
+		margin: 0 auto;
+		padding: 30px 0;
+	}
+	.signup-form h2{
+		color: #636363;
+        margin: 0 0 15px;
+		position: relative;
+		text-align: center;
+    }
+	.signup-form h2:before, .signup-form h2:after{
+		content: "";
+		height: 2px;
+		width: 30%;
+		background: #d4d4d4;
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+	}	
+	.signup-form h2:before{
+		left: 0;
+	}
+	.signup-form h2:after{
+		right: 0;
+	}
+    .signup-form .hint-text{
+		color: #999;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+    #CON1{
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #f2f3f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+	.signup-form .form-group{
+		margin-bottom: 20px;
+	}
+	.signup-form input[type="checkbox"]{
+		margin-top: 3px;
+	}
+	.signup-form .btn{        
+        font-size: 16px;
+        font-weight: bold;		
+		min-width: 140px;
+        outline: none !important;
+    }
+	.signup-form .row div:first-child{
+		padding-right: 10px;
+	}
+	.signup-form .row div:last-child{
+		padding-left: 10px;
+	}    	
+    .signup-form a{
+		color: #fff;
+		text-decoration: underline;
+	}
+    .signup-form a:hover{
+		text-decoration: none;
+	}
+	.signup-form form a{
+		color: #5cb85c;
+		text-decoration: none;
+	}	
+	.signup-form form a:hover{
+		text-decoration: underline;
+	}  
+</style>
+<script src="./js/firebase.js"></script>
+<script src="./js/jquery.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyBA-Ajzk-49K8Oqb-QdTBk24ssETV-0vbM",
+    authDomain: "kidsicalendar.firebaseapp.com",
+    databaseURL: "https://kidsicalendar.firebaseio.com",
+    projectId: "kidsicalendar",
+    storageBucket: "kidsicalendar.appspot.com",
+    messagingSenderId: "450786879839"
+  };
+  let project = firebase.initializeApp(config);
+  let DB = project.database();
+  let SF = firebase.storage();
+  let PostTEXT = "";
+
+  window.onload = () => {
+    DB.ref(`posts`).on("value", r => {
+        let rr = r.val();
+        if (rr == null || rr == undefined) return document.getElementById("POSTSS").innerHTML = "";
+        let rrKeys = Object.keys(rr);
+        for (let i = 0; i < rrKeys.length; i++) {
+          let post = rr[rrKeys[i]];
+          console.log(post);
+          SF.ref().child(post.imageToken).getDownloadURL().then(function (url) {
+            let xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function (event) {
+              let blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+            let today = new Date();
+              PostTEXT += `
+          <div class="col-md-6 col-sm-6">
+            <div class="single-profile-top wow fadeInDown animated animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible;-webkit-animation-duration: 1000ms; -moz-animation-duration: 1000ms; animation-duration: 1000ms;-webkit-animation-delay: 300ms; -moz-animation-delay: 300ms; animation-delay: 300ms;">
+              <div class="media">
+                <div class="pull-left">
+                  <a href="about.html#"><img class="media-object" width = "145 px" height = "137 px" src="${url}" alt=""></a>
+                </div>
+                <div class="media-body">
+                  <h4>${post.eventName}</h4>
+                  <h5>Place: ${post.place}</h5>
+                  <ul class="tag clearfix">
+                    <li class="btn"><a href="events.html#">${(post.evDate.day.length == 1) ? `0${post.evDate.day}` : post.evDate.day}</a></li>
+                    <li class="btn"><a href="events.html#">${(post.evDate.month.length == 1) ? `0${post.evDate.month}` : post.evDate.month}</a></li>
+                    <li class="btn"><a href="events.html#">${post.evDate.year}</a></li>
+                  </ul>
+
+                </div>
+              </div>
+              <br>
+              <br>
+              <button type="getnow" name="subscribe" class="btn btn-primary btn-lg" required="required" onclick="deletePost('${post.postID}')">Delete</button>
+                  </div>
+            </div>
+          </div>
+          `;
+            
+
+            document.getElementById("POSTSS").innerHTML = PostTEXT;
+
+
+          }).catch(console.log);
+
+        }
+        PostTEXT = "";
+
+      });
+
+  }
+
+  function restDataBaseANDStorge() {
+    DB.ref(`posts`).on("value", r => {
+        let rr = r.val();
+        let rrKeys = Object.keys(rr);
+        for (let i = 0; i < rrKeys.length; i++) {
+          let post = rr[rrKeys[i]];
+          SF.ref(post.imageToken).delete();
+          DB.ref(`posts/${post.postID}`).remove();
+        }
+      });
+  }
+
+  function deletePost(id) {
+    DB.ref(`posts/${id}`).remove();
+    SF.ref(id).delete();
+  }
+
+</script>
+</head>
+<body>
+<div id="CON0" class="signup-form">
+  <div id="CON1">
+    <h2>Edit DataBase</h2>
+    <br>
+
+    <h3>Rest DataBase & Storge :</h3> <button type="submit" id="postBtn" onclick="restDataBaseANDStorge()"  class="btn btn-success btn-lg btn-block">Do</button>
+    <hr>
+
+  </div>
+</div>
+
+<div id="POSTSS" class="row clearfix">
+
+</div>
+
+</body>
+</html>
